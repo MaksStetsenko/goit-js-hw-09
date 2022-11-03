@@ -69,7 +69,7 @@ function counter() {
   let deltaTime = targetTime - new Date();
   const time = convertMs(deltaTime);
 
-  if (deltaTime === 0) {
+  if (deltaTime <= 0) {
     Notiflix.Notify.success('Время вышло');
     clearInterval(timeInt);
     return;
