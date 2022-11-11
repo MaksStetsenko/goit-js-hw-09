@@ -1,5 +1,7 @@
-const startBtn = document.querySelector('[data-start]');
-const stopBtn = document.querySelector('[data-stop]');
+const refs = {
+  startBtn: document.querySelector('[data-start]'),
+  stopBtn: document.querySelector('[data-stop]'),
+};
 
 // ====================================================
 
@@ -15,18 +17,18 @@ const onStartBtn = event => {
   intervalId = setInterval(() => {
     document.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
-  startBtn.disabled = true;
-  stopBtn.disabled = false;
+  refs.startBtn.disabled = true;
+  refs.stopBtn.disabled = false;
 };
 
 const onStopBtn = event => {
   clearInterval(intervalId);
-  startBtn.disabled = false;
-  stopBtn.disabled = true;
+  refs.startBtn.disabled = false;
+  refs.stopBtn.disabled = true;
 };
 
 // ====================================================
 
-startBtn.addEventListener('click', onStartBtn);
+refs.startBtn.addEventListener('click', onStartBtn);
 
-stopBtn.addEventListener('click', onStopBtn);
+refs.stopBtn.addEventListener('click', onStopBtn);

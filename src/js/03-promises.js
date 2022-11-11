@@ -2,14 +2,16 @@ import Notiflix from 'notiflix';
 
 //===================================================
 
-const firstDelay = document.querySelector('[name=delay]');
-const step = document.querySelector('[name=step]');
-const amount = document.querySelector('[name=amount]');
-const form = document.querySelector('.form');
+const refs = {
+  firstDelay: document.querySelector('[name=delay]'),
+  step: document.querySelector('[name=step]'),
+  amount: document.querySelector('[name=amount]'),
+  form: document.querySelector('.form'),
+};
 
 //===================================================
 
-function createPromise(position, delay) {
+const createPromise = (position, delay) => {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
     setTimeout(() => {
@@ -20,15 +22,16 @@ function createPromise(position, delay) {
       }
     }, delay);
   });
-}
+};
 
-function onSubmit(event) {
+const onSubmit = event => {
   event.preventDefault();
-  let valueOfFirstDelay = Number(firstDelay.value);
-  let valueOfStep = Number(step.value);
-  let valueofAmount = Number(amount.value);
 
-  for (let index = 1; index <= valueofAmount; index += 1) {
+  let valueOfFirstDelay = Number(refs.firstDelay.value);
+  let valueOfStep = Number(refs.step.value);
+  let valueOfAmount = Number(refs.amount.value);
+
+  for (let index = 1; index <= valueOfAmount; index += 1) {
     createPromise(index, valueOfFirstDelay)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
@@ -43,8 +46,8 @@ function onSubmit(event) {
 
     valueOfFirstDelay += valueOfStep;
   }
-}
+};
 
 //==================================================
 
-form.addEventListener('submit', onSubmit);
+refs.form.addEventListener('submit', onSubmit);
